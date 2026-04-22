@@ -4,7 +4,7 @@ from tools import mock_lead_capture
 
 knowledge = load_knowledge()
 
-# Memory
+
 state = {
     "intent": None,
     "name": None,
@@ -24,16 +24,16 @@ def chat():
         intent = detect_intent(user_input)
         state["intent"] = intent
 
-        # Greeting
+        
         if intent == "greeting":
             print("Agent: Hello! How can I help you today?")
 
-        # Inquiry (RAG)
+        
         elif intent == "inquiry":
             answer = get_answer(user_input, knowledge)
             print("Agent:", answer)
 
-        # High Intent
+        
         elif intent == "high_intent":
             print("Agent: Great! Let's get you started 🚀")
 
@@ -46,7 +46,7 @@ def chat():
             if not state["platform"]:
                 state["platform"] = input("Agent: Which platform do you use (YouTube/Instagram)? ")
 
-            # Call tool ONLY after all data collected
+            
             if state["name"] and state["email"] and state["platform"]:
                 mock_lead_capture(state["name"], state["email"], state["platform"])
 
